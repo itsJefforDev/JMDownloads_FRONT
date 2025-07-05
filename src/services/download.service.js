@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api/download';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const download = async (url, format) => {
-  const response = await axios.post(API_URL, { url, format }, { responseType: 'blob' });
+  const response = await axios.post(`${API_URL}/api/download`, { url, format }, { responseType: 'blob' });
 
   const blob = new Blob([response.data]);
   const downloadUrl = window.URL.createObjectURL(blob);
